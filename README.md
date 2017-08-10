@@ -3,7 +3,8 @@
 - https://www.getpostman.com/integrations/run-button
 - Chinese: https://www.qcloud.com/document/product/269/1520
 - https://gturnquist-quoters.cfapps.io/api/
-- amazon and facebook
+- facebook: https://developers.facebook.com/docs/graph-api/using-graph-api
+- amazon
 
 #### TODO
 
