@@ -1,3 +1,9 @@
+Emulate POST request form submission: 
+
+​	search `postForObject= emulate form submission` inside `consumer.Poster`
+
+> [How to POST form data with Spring RestTemplate?](https://stackoverflow.com/a/38388168/986966)
+
 #### Some public Restful APIs
 
 - https://www.getpostman.com/integrations/run-button

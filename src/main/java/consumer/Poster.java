@@ -6,6 +6,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,6 +20,7 @@ public class Poster {
 		System.out.println("Please start project sia_p427_16.2.2_REST_http_message_converter first");
 		String url = "http://localhost:8080/sia_p427_16.2.2_REST_http_message_converter/usersRestfulController";
 		String url_WithResponseHeaders = "http://localhost:8080/sia_p427_16.2.2_REST_http_message_converter/users/withResponseHeader";
+		String url_post_form_emulation = "http://localhost:8080/sia_p427_16.2.2_REST_http_message_converter/users/post-form-emulation";
 		RestTemplate rest = new RestTemplate();
 		User newUser = new User("newGuy", 22);
 		ObjectMapper mapper = new ObjectMapper();
@@ -48,5 +51,14 @@ public class Poster {
 		URI location = rest.postForLocation(url_WithResponseHeaders, entity);
 		System.out.println(location);
 		
+		System.out.println("\n postForObject= emulate form submission=====================================================================");
+		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+		body.add("name", "Raiden");
+		body.add("age", "11");
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		HttpEntity<MultiValueMap<String, String>> entity1 = new HttpEntity<MultiValueMap<String,String>>(body, headers);
+		User user1 = rest.postForObject(url_post_form_emulation, entity1, User.class);
+		System.out.println("user: "+user1);
 	}
 }
